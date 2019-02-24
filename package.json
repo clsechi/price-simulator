@@ -1,0 +1,18 @@
+{
+  "name": "price-simulator",
+  "version": "1.0.0",
+  "description": "Price simulator based on Frente APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "owc-dev-server"
+  },
+  "author": "Carlos Sechi (carlossechi@hotmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "lit-element": "^2.0.1"
+  },
+  "devDependencies": {
+    "owc-dev-server": "^0.1.6"
+  }
+}
