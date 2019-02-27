@@ -133,10 +133,7 @@ class PriceSimulator extends LitElement {
     this.products = [];
     this.agents = [];
     this.correspondentId = this.getAttribute('correspondent_id');
-    // this.agentCode = null;
     this.currency = 1000;
-    // this.currencyBRL = null;
-    // this.productCode = null;
     this.product = { sellPrice: 0 };
   }
 
@@ -174,7 +171,7 @@ class PriceSimulator extends LitElement {
   }
 
   updateCurrencyBRL() {
-    this.currencyBRL = +(this.currency * this.product.sellPrice).toFixed(2);
+    this.currencyBRL = +(this.currency * this.computedVet()).toFixed(2);
   }
 
   async updateAgentCode() {
@@ -253,9 +250,9 @@ class PriceSimulator extends LitElement {
           </div>
         </div>
         <div class="ps-taxes">
-          <p>1 ${productCode} = R$ ${product.sellPrice.toFixed(4)}</p>
-          <p>IOF (1,10%) = R$ ${this.computedIof()}</p>
-          <p>VET = ${this.computedVet()}</p>
+          <p>1 ${productCode} = R$ ${product.sellPrice ? product.sellPrice.toFixed(4) : '--'}</p>
+          <p>IOF (1,10%) = R$ ${this.computedIof() || ' --'}</p>
+          <p>VET = R$ ${this.computedVet() || '--'}</p>
         </div>
         <div class="ps-padding">
           <div>
