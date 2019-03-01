@@ -5,14 +5,28 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "owc-dev-server"
+    "start": "owc-dev-server",
+    "build": "npx webpack"
   },
   "author": "Carlos Sechi (carlossechi@hotmail.com)",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "lit-element": "^2.0.1"
   },
   "devDependencies": {
-    "owc-dev-server": "^0.1.6"
-  }
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^1.0.1",
+    "owc-dev-server": "^0.1.6",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ]
 }
