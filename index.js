@@ -19,6 +19,35 @@ class PriceSimulator extends LitElement {
       css`
         :host {
           font-family: sans-serif;
+          color: #898989;
+        }
+
+        .loader {
+          position: absolute;
+          border: 3px solid #fff; /* Light grey */
+          border-top: 3px solid #184060; /* Blue */
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          animation: spin 1s linear infinite;
+          z-index: 999;
+        }
+
+        .no-show {
+          display: none !important;
+        }
+        
+        .bg-black {
+          position: absolute;
+          z-index: 998;
+          width: 100%;
+          height: 100%;
+          background-color: #f3f3f3;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
 
         .ps-container {
@@ -26,14 +55,20 @@ class PriceSimulator extends LitElement {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          flex: 1;
+          border-color: darkgray;
+          border-radius: 5px;
+          border-width: 1px;
+          border-style: solid;
+          padding: 20px;
+          width: auto;
+          box-shadow: 5px;
+          box-sizing: border-box;
         }
 
         .ps-currency {
           display: flex;
           justify-content: center;
           align-items: center;
-          flex: 1;
         }
 
         .ps-borders {
@@ -43,19 +78,8 @@ class PriceSimulator extends LitElement {
           padding: 6.5px 0;
         }
 
-        a {
-          text-decoration: none;
-        }
-
-        #price-simulator {
-          border-color: darkgray;
-          border-radius: 5px;
-          border-width: 1px;
-          border-style: solid;
-          padding: 20px;
-          wicth: auto;
-          max-width: 500px;
-          box-shadow: 5px;
+        .full-width {
+          width: 100%
         }
 
         .ps-city-selector {
@@ -63,51 +87,86 @@ class PriceSimulator extends LitElement {
           border-width: 0 0 1px 0;
           background-color: transparent;
           color: grey;
-          width:200px;
         }
 
-        .ps-product-selector {
+        .ps-custom-select {
+          background-color: #184060;
+          padding: 8px 4px;
+          max-width: 170px;
+          width: 200px;
+        }
+
+        .ps-custom-select option {
+          color: white;
+          background: #184060;
+        }
+
+        .ps-custom-select select {
           text-transform: capitalize;
           border: none;
           background-color: transparent;
           color: white;
-          width:200px;
         }
 
-        .ps-product-selector options {
-
+        .ps-custom-select span {
+          color: white;
+          margin-left: 10px;
+          font-size: 0.85em;
         }
 
-        .ps-selector-background {
-          background-color: #184060;
-          padding: 8px 4px;
+        .align-center {
+          display: flex;
+          align-items: center;
         }
 
-        .ps-taxes {
-          font-size: 0.60em;
+        .justify-center {
+          display: flex;
+          justify-content: center;
+        }
+
+        .flex-center {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .ps-custom-select .icon {
+          margin-left: 5px;
         }
 
         .ps-label {
           font-size: 0.8em;
           opacity: 0.8;
-          margin-left: 5px;
+          margin-right: 5px;
         }
 
         .ps-input {
           border: none;
-          width: 70px;
+          width: 100px;
         }
 
+        .ps-taxes {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end
+        }
+
+        .ps-taxes .margin{
+          margin-right: 15%
+        }
+
+
         .ps-taxes p {
+          font-size: 0.60em;
           opacity: 0.7;
           margin: 7px;
         }
 
         .ps-btn {
-          background-color: #4CAF50; /* Green */
+          background-color: #009688;
           border: none;
           color: white;
-          padding: 7px 35px;
+          padding: 10px 30px;
           text-align: center;
           text-transform: uppercase;
           text-decoration: none;
@@ -117,7 +176,7 @@ class PriceSimulator extends LitElement {
         }
 
         .ps-padding {
-          padding: 6px 0px;
+          padding: 7px 0px;
         }
         
         .ps-footer {
@@ -213,19 +272,24 @@ class PriceSimulator extends LitElement {
 
     return html`
       <div id="price-simulator" class="ps-container">
-        <div class="ps-padding">
+        <div class="bg-black flex-center no-show">
+          <div class="loader"></div>
+        </div>
+        <div class="ps-padding full-width">
           <select
-            class="ps-city-selector"
+            class="ps-city-selector full-width"
             id="agentSelector"
             @change="${() => this.updateAgentCode()}"
           >
             ${agents.map(({ vuoriId, label }) => html`
-              <option value=${vuoriId}>${label}</option>
+              <option value=${vuoriId}>
+                ${label}
+              </option>
             `)}
           <select>
         </div>
-        <div class="ps-currency">
-          <div class="ps-selector-background">
+        <div class="ps-currency ps-padding full-width">
+          <div class="ps-selector-background ps-custom-select">
             <select
               class="ps-product-selector"
               id="productSelector"
@@ -236,7 +300,7 @@ class PriceSimulator extends LitElement {
               `)}
             </select>
           </div>
-          <div class="ps-borders">
+          <div class="ps-borders full-width justify-center">
             <label class="ps-label">${productCode}</label>
             <input
               id="currencyInput"
@@ -250,19 +314,25 @@ class PriceSimulator extends LitElement {
           </div>
         </div>
         <div class="ps-taxes">
-          <p>1 ${productCode} = R$ ${product.sellPrice ? product.sellPrice.toFixed(4) : '--'}</p>
-          <p>IOF (1,10%) = R$ ${this.computedIof() || ' --'}</p>
-          <p>VET = R$ ${this.computedVet() || '--'}</p>
+          <div class="margin">
+            <p>1 ${productCode} = R$ ${product.sellPrice ? product.sellPrice.toFixed(4) : '--'}</p>
+            <p>IOF (1,10%) = R$ ${this.computedIof() || ' --'}</p>
+            <p>VET = R$ ${this.computedVet() || '--'}</p>
+          </div>
         </div>
-        <div class="ps-padding">
-          <div>
+        <div class="ps-currency ps-padding full-width">
+          <div class="ps-selector-background ps-custom-select align-center">
+            <svg height="20" width="20" class="icon">
+              <circle cx="10" cy="10" r="10" fill="grey" />
+            </svg>
             <span>Real<span>
           </div>
-          <div>
-            <label>BRL</label>
+          <div class="ps-borders full-width justify-center align-center">
+            <label class="ps-label">BRL</label>
             <input
               id="currencyBRLInput"
               type="number"
+              class="ps-input"
               value="${currencyBRL}"
               @input="${() => this.setCurrencyBRL()}"
             >
