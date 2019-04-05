@@ -196,10 +196,6 @@ class PriceSimulator extends LitElement {
     return +(this.product.sellPrice + (this.product.sellPrice * 0.011)).toFixed(4);
   }
 
-  totalValue() {
-    return this.currencyBRL + this.computedIof();
-  }
-
   render() {
     const {
       agentCode,
