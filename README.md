@@ -144,13 +144,13 @@ const currency = () => getInputCurrencyValue();
 const iofMultiplicator = () => currentProduct.iof / 100;
 // 0.011
 
-const computedVet = () =>  currentProduct.sellPrice + (currentProduct.sellPrice * iofMultiplicator())
-// 4.019065
+const computedVet = () =>  +(currentProduct.sellPrice + (currentProduct.sellPrice * iofMultiplicator())).toFixed(2)
+// 4.0191
 
 const currencyBRL = () => currency() * computedVet();
-// 4019.065
+// 4019.10
 
-const computedIof = () => currencyBRL() * iofMultiplicator();
-// 44.209715
+const computedIof = () => +(currencyBRL() * iofMultiplicator()).toFixed(2);
+// 44.21
 
 ```
