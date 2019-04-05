@@ -1,5 +1,7 @@
 # price-simulator
 
+# This is as WORK IS PROGRESS
+
 ## Como tudo funciona
 
 Temos três entidades em questão:
@@ -106,3 +108,49 @@ ____
 ## O Cálculo
 
 Com esses dados conseguimos exibir os valores de quando vai custar em **REAIS** a cotação escolhida pelo cliente.
+
+Um cliente deseja comprar **1000 USD** e temos uma taxa de `R$ 3.975365`
+
+```js
+let currentProduct = {};
+
+const setCurrentProduct = (agentCode) => {
+  currentProduct = products.find(({ vuoriId }) => vuoriId === agentCode);
+}
+
+@click = (agendCode) => setCurrenctProduct(agentCode);
+
+console.log(currentProduct);
+/**
+  {
+    productCode: "USD",
+    value: 0,
+    sellPrice: 3.975365,
+    iof: 1.1,
+    currency: "DÓLAR AMERICANO",
+    currencyAbbreviation: "$",
+    maxToSell: 3000,
+    minToSell: 200,
+    quotationId: "05c42647-46da-46a4-a5f8-2a7556d13f3c",
+    multiples: [
+    100
+    ]
+  }
+*/
+
+const currency = () => getInputCurrencyValue();
+// 1000
+
+const iofMultiplicator = () => currentProduct.iof / 100;
+// 0.011
+
+const computedVet = () =>  currentProduct.sellPrice + (currentProduct.sellPrice * iofMultiplicator())
+// 4.019065
+
+const currencyBRL = () => currency() * computedVet();
+// 4019.065
+
+const computedIof = () => currencyBRL() * iofMultiplicator();
+// 44.209715
+
+```
