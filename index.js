@@ -266,7 +266,7 @@ class PriceSimulator extends LitElement {
         </div>
         <div>
           <a
-            href="${`https://frentetech.com.br/${this.correspondentId}/checkout?agentId=${agentCode}&productId=${productCode}&productAmount=${currency}&utm_source=${this.correspondentId}-simulator`}"
+            href="${`https://frentetech.com.br/${this.correspondentId}/app/checkout?agentId=${agentCode}&productId=${productCode}&productAmount=${currency}&utm_source=${this.correspondentId}-simulator`}"
             target="_blank"
             class="ps-btn"
           >
