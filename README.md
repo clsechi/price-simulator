@@ -154,7 +154,7 @@ const computedIof = () => +(currencyBRL() * iofMultiplicator()).toFixed(2);
 // 44.21
 
 ```
-### Integração
+## Integração
 
 Você deve montar a URL e redirecionar para ela ou abrir em uma nova guia conforme ação do usuario
 
@@ -168,4 +168,4 @@ Você deve montar a URL e redirecionar para ela ou abrir em uma nova guia confor
 
 A url ira ficar dessa forma, usando o exemplos acima
 
-`https://frentetech.com.br/matriz/app/checkout?agentId=WL-FRENTE-SP&productId=USD&productAmount=1000&utm_source=matriz-simulator`
+`https://frentetech.com.br/matriz/app/checkout/paper-money?agentId=WL-FRENTE-SP&productId=USD&productAmount=1000&utm_source=matriz-simulator`
