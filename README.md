@@ -158,7 +158,7 @@ const computedIof = () => +(currencyBRL() * iofMultiplicator()).toFixed(2);
 
 Você deve montar a URL e redirecionar para ela ou abrir em uma nova guia conforme ação do usuario
 
-`productAmount` = id da cidade escolhida pelo usuario
+`agentId` = id da cidade escolhida pelo usuario
 
 `productId` = id da moeda escolhida pelo usuario
 
