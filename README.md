@@ -158,6 +158,8 @@ const computedIof = () => +(currencyBRL() * iofMultiplicator()).toFixed(2);
 
 Você deve montar a URL e redirecionar para ela ou abrir em uma nova guia conforme ação do usuario
 
+`correspondent_identifier` = Identifier do seu Simple, exemplo: *matriz*
+
 `agentId` = id da cidade escolhida pelo usuario
 
 `productId` = id da moeda escolhida pelo usuario
@@ -168,4 +170,4 @@ Você deve montar a URL e redirecionar para ela ou abrir em uma nova guia confor
 
 A url ira ficar dessa forma, usando o exemplos acima
 
-`https://iamsimple.com.br/{correspondent_id}/app/checkout/paper-money?agentId=WL-FRENTE-SP&productId=USD&productAmount=1000&utm_source=matriz-simulator`
+`https://iamsimple.com.br/{correspondent_identifier}/app/checkout/paper-money?agentId=WL-FRENTE-SP&productId=USD&productAmount=1000&utm_source=matriz-simulator`
