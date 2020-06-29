@@ -11,18 +11,18 @@
   "author": "Carlos Sechi (carlossechi@hotmail.com)",
   "license": "ISC",
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "lit-element": "^2.0.1"
+    "@babel/polyfill": "^7.10.1",
+    "lit-element": "^2.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "babel-loader": "^8.0.5",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^1.0.1",
     "owc-dev-server": "^0.1.6",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.1"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "browserslist": [
     "> 1%",

@@ -5,7 +5,7 @@ module.exports = {
   mode: 'production',
   entry: ["@babel/polyfill", "./index.js"],
   output: {
-    filename: 'priceSimulator.js',
+    filename: 'price-simulator.js',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
